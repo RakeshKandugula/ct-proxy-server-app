@@ -6,7 +6,10 @@ function allowedFile(filename) {
 }
 
 function sanitizeKey(key) {
+  if (typeof key === 'string') {
   return key.replace(/[\r\n]+/g, ' ').trim();
+}
+return '';
 }
 
 function convert(arrayBuffer, supplier, brand, buyer, season, phase, cl, gender, ST_user, ticketType, poLocation, poType, poEDI, priceTag, ls, nb, na, mf, mls) {
@@ -24,6 +27,11 @@ function convert(arrayBuffer, supplier, brand, buyer, season, phase, cl, gender,
     data = XLSX.utils.sheet_to_json(workbook.Sheets["product info"], { header: 1 });
   }else if (supplierName === "VAGABOND_FINLAND_OY") {
     data = XLSX.utils.sheet_to_json(workbook.Sheets[sheetName], { header: 1, range: 2 });
+  }
+  else if (supplierName === "testsupplier1") {
+    console.log(`Sheet name: ${supplierName}`);
+ 
+    data = XLSX.utils.sheet_to_json(workbook.Sheets[sheetName], { header: 1, range: 1});
   }
   else {
     data = XLSX.utils.sheet_to_json(workbook.Sheets[sheetName], { header: 1 });
