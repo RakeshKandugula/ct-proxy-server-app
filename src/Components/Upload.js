@@ -1,11 +1,12 @@
 import React, { useState, useRef } from 'react';
-import { Container, Row, Col, Form, Alert } from 'react-bootstrap';
+import { Container, Row, Col, Form, Alert, Modal, Button, Toast, ToastContainer } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Select from 'react-select';
 import { convert, allowedFile } from "./excelToXml";  // Ensure this is correctly implemented
 import { suppliers, buyers, seasons, phases, lifestyles, lifestages, genders, ST_users, ticketTypes, poLocations, poTypes, poEDIs, orderPriceTags, lifestyleDetails, multiplicationFactorOptions, brands } from './constants';
 import SubmitButton from './SubmitButton';  // Import the new component
 import '../styles/styles.css';
+import axios from 'axios';
 
 function Upload() {
   const [file, setFile] = useState(null);
@@ -29,6 +30,10 @@ function Upload() {
   const [selectedLifestyleDetail, setSelectedLifestyleDetail] = useState("");
   const [multiplicationFactor, setMultiplicationFactor] = useState("");
   const [fileInputKey, setFileInputKey] = useState(Date.now());
+
+  const [showConfirmation, setShowConfirmation] = useState(false);
+  const [showSuccessToast, setShowSuccessToast] = useState(false);
+
   const formRef = useRef(null);  // Ref for form element
 
   const resetForm = () => {
@@ -55,41 +60,95 @@ function Upload() {
     setFileInputKey(Date.now());
   };
 
-
   const handleFileChange = (e) => {
     setFile(e.target.files[0]);
     setErrorMessage(null);
   };
-  
-  const handleSubmit = async () => {
-    // Check all mandatory fields
+
+  const handleConfirmSubmit = async () => {
+    // This function executes after user confirms in the modal
+    setShowConfirmation(false); // Hide the modal
+    handleSubmitActual(); // Proceed with the actual submit logic
+  };
+
+  const handleSubmit = () => {
+    // Before actually submitting, show the confirmation dialog
+    setShowConfirmation(true);
+  };
+
+  const handleSubmitActual = async () => {
     if (!file || !selectedSupplier || !buyer || !selectedSeason) {
       setErrorMessage('Please fill out all the mandatory fields.');
       return;
     }
-  
+
     if (!allowedFile(file.name)) {
       setErrorMessage('Invalid file format. Please upload a .xlsx file.');
       return;
     }
-  
+
     try {
       const fileReader = new FileReader();
       fileReader.onload = async (event) => {
         try {
           const arrayBuffer = event.target.result;
-          const result = convert(arrayBuffer, selectedSupplier, selectedBrand, buyer, selectedSeason, selectedPhase, lifestage, gender, ST_user, selectedTicketType, poLocation, poType, poEDI, priceTag, selectedLifestyleDetail, notBefore, notAfter, multiplicationFactor, lifestyle);
-          
+
+          // Step 1: Convert to XML
+          const result = convert(
+            arrayBuffer,
+            selectedSupplier,
+            selectedBrand,
+            buyer,
+            selectedSeason,
+            selectedPhase,
+            lifestage,
+            gender,
+            ST_user,
+            selectedTicketType,
+            poLocation,
+            poType,
+            poEDI,
+            priceTag,
+            selectedLifestyleDetail,
+            notBefore,
+            notAfter,
+            multiplicationFactor,
+            lifestyle
+          );
+
           if (result.success) {
             const xmlBlob = new Blob([result.xmlString], { type: 'application/xml' });
-            const url = URL.createObjectURL(xmlBlob);
+
+            // Step 2: Trigger Download Locally
+            const downloadUrl = window.URL.createObjectURL(xmlBlob);
             const link = document.createElement('a');
-            link.href = url;
+            link.href = downloadUrl;
             link.setAttribute('download', 'output.xml');
             document.body.appendChild(link);
             link.click();
             link.remove();
-            resetForm();
+
+            console.log('File downloaded successfully.');
+
+            // Step 3: Send File to API Gateway Proxy
+            const proxyUrl = 'https://bhk9mub853.execute-api.eu-north-1.amazonaws.com/beta-proxy';
+            try {
+              const response = await axios.post(proxyUrl, xmlBlob, {
+                headers: { 'Content-Type': 'application/octet-stream' },
+              });
+            
+              if (response.status === 200) {
+                //alert('Endpoint received the file.');
+                console.log('File sent to API Gateway proxy successfully.');
+                setShowSuccessToast(true); 
+                resetForm();
+              } else {
+                setErrorMessage('Server did not acknowledge the file.');
+              }
+            } catch (error) {
+              console.error('Error sending file:', error);
+              setErrorMessage('An error occurred while sending the file.');
+            }
           } else {
             setErrorMessage(`Conversion failed: ${result.error}`);
           }
@@ -97,6 +156,7 @@ function Upload() {
           setErrorMessage(`Conversion error: ${conversionError.message}`);
         }
       };
+
       fileReader.readAsArrayBuffer(file);
     } catch (error) {
       setErrorMessage(`File reading error: ${error.message}`);
@@ -117,19 +177,42 @@ function Upload() {
   const handleSupplierChange = (selectedOption) => {
     setSelectedSupplier(selectedOption);
     setSelectedBrand(null); // Reset brand selection when supplier changes
-};
+  };
 
-const handleBrandChange = (selectedOption) => {
+  const handleBrandChange = (selectedOption) => {
     setSelectedBrand(selectedOption);
-};
-  
+  };
 
   return (
     <Container className="bg-image">
+      {/* Success Toast */}
+      <ToastContainer position="top-center" className="p-3" style={{ zIndex: 9999 }}>
+        <Toast onClose={() => setShowSuccessToast(false)} show={showSuccessToast} delay={3000} autohide bg="success">
+          <Toast.Header>
+            <strong className="me-auto">Success</strong>
+          </Toast.Header>
+          <Toast.Body className="text-white">File successfully sent!</Toast.Body>
+        </Toast>
+      </ToastContainer>
+
+      {/* Confirmation Modal */}
+      <Modal show={showConfirmation} onHide={() => setShowConfirmation(false)}>
+        <Modal.Header closeButton>
+          <Modal.Title>Confirm Action</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          Are you sure you want to send this? This action cannot be undone.
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={() => setShowConfirmation(false)}>Cancel</Button>
+          <Button variant="danger" onClick={handleConfirmSubmit}>Yes, Send</Button>
+        </Modal.Footer>
+      </Modal>
+
       <Row className="justify-content-md-center mt-5">
         <Col md="8">
           <Form ref={formRef} className="p-4 bg-light rounded shadow">
-            <h4 className="mb-4">Product Creation Form</h4>
+            <h4 className="mb-4">Product Creation Form - TEST ONLY</h4>
             {errorMessage && <Alert variant="danger">{errorMessage}</Alert>}
             <Row>
               <Col md="6">
@@ -146,17 +229,17 @@ const handleBrandChange = (selectedOption) => {
                   />
                 </Form.Group>
                 {selectedSupplier && brandOptions.length > 0 && (
-            <Form.Group className="mb-3">
-                <Form.Label>{`${selectedSupplier.label}'s Brand`}</Form.Label>
-                <Select
-                    options={brandOptions}
-                    value={selectedBrand}
-                    onChange={handleBrandChange}
-                    placeholder="Select a brand..."
-                    isSearchable={true}
-                />
-            </Form.Group>
-        )}
+                  <Form.Group className="mb-3">
+                    <Form.Label>{`${selectedSupplier.label}'s Brand`}</Form.Label>
+                    <Select
+                      options={brandOptions}
+                      value={selectedBrand}
+                      onChange={handleBrandChange}
+                      placeholder="Select a brand..."
+                      isSearchable={true}
+                    />
+                  </Form.Group>
+                )}
                 <Form.Group className="mb-3">
                   <Form.Label>Buyer <span style={{ color: "red" }}>*</span></Form.Label>
                   <Form.Select aria-label="Select Buyer" onChange={(e) => setBuyer(e.target.value)} value={buyer} required>
@@ -246,15 +329,15 @@ const handleBrandChange = (selectedOption) => {
                 <Form.Group className="mb-3">
                   <Form.Label>Ticket Type</Form.Label>
                   <Form.Select 
-                  aria-label="Select Ticket Type" 
-                  onChange={(e) => setSelectedTicketType(e.target.value)} 
-                  value={selectedTicketType || ""}  // Ensure it defaults to an empty string if not set
-                >
-                  <option>Select...</option>
-                  {ticketTypes.map((ttype, index) => (
-                    <option key={index} value={ttype.value}>{ttype.label}</option>
-                  ))}
-                </Form.Select>
+                    aria-label="Select Ticket Type" 
+                    onChange={(e) => setSelectedTicketType(e.target.value)} 
+                    value={selectedTicketType || ""}
+                  >
+                    <option>Select...</option>
+                    {ticketTypes.map((ttype, index) => (
+                      <option key={index} value={ttype.value}>{ttype.label}</option>
+                    ))}
+                  </Form.Select>
                 </Form.Group>
                 <Form.Group className="mb-3">
                   <Form.Label>PO Location</Form.Label>
@@ -313,7 +396,7 @@ const handleBrandChange = (selectedOption) => {
               </Col>
             </Row>
           </Form>
-          <SubmitButton onClick={handleSubmit} />  {/* Use the SubmitButton component */}
+          <SubmitButton onClick={handleSubmit} />
         </Col>
       </Row>
     </Container>

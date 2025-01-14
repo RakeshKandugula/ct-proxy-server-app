@@ -49,6 +49,8 @@ export const multiplicationFactorOptions = [
     { value:"DR_MARTENS_AIRWAIR_WHOLESALE_LIMITED", label:"DR_MARTENS_AIRWAIR_WHOLESALE_LIMITED"},
     {value:"testsupplier1", label: "testsupplier1"},
     {value:"testsupplier2", label: "testsupplier2"},
+    {value:"VF_Scandinavia", label: "VF_Scandinavia"},
+    {value:"Marc_Opolo", label: "Marc_Opolo"},
     {value:"SAND_CPH_A/S", label: "SAND_CPH_A/S"}
   ];
 
