@@ -41,7 +41,7 @@ export const suppliers = [
   { value: "PVH_FINLAND_OY", label: "PVH_FINLAND_OY" },
   { value: "Ralph_Lauren", label: "Ralph_Lauren" },
   { value: "SAND_CPH_A/S", label: "SAND_CPH_A/S" },
-  { value: "SANETTA,__GEBRÜDER_AMMANN_GMBH_&_CO._KG", label: "SANETTA,__GEBRÜDER_AMMANN_GMBH_&_CO._KG" },
+  { value: "SANETTA,__GEBRUDER_AMMANN_GMBH_&_CO._KG", label: "SANETTA,__GEBRUDER_AMMANN_GMBH_&_CO._KG" },
   { value: "SECOND_FEMALE_APS", label: "SECOND_FEMALE_APS" },
   { value: "testsupplier1", label: "testsupplier1" },
   { value: "testsupplier2", label: "testsupplier2" },
