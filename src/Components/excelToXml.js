@@ -23,7 +23,7 @@ function convert(arrayBuffer, supplier, brand, buyer, season, phase, cl, gender,
   if (supplierName === "onlinetextile") {
     // Start at row 12 for the specific supplier
     data = XLSX.utils.sheet_to_json(workbook.Sheets[sheetName], { header: 1, range: 11 });
-  }else if (supplierName === "PVH") {
+  }else if (supplierName === "PVH_FINLAND_OY") {
     data = XLSX.utils.sheet_to_json(workbook.Sheets["product info"], { header: 1 });
   }else if (supplierName === "VAGABOND_FINLAND_OY") {
     data = XLSX.utils.sheet_to_json(workbook.Sheets[sheetName], { header: 1, range: 2 });
