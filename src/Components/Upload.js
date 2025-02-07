@@ -33,6 +33,7 @@ function Upload() {
 
   const [showConfirmation, setShowConfirmation] = useState(false);
   const [showSuccessToast, setShowSuccessToast] = useState(false);
+  const [convertedBlob, setConvertedBlob] = useState(null); // State to store the converted XML file
 
   const formRef = useRef(null);  // Ref for form element
 
@@ -58,6 +59,7 @@ function Upload() {
     setSelectedLifestyleDetail("");
     setMultiplicationFactor("");
     setFileInputKey(Date.now());
+    setConvertedBlob(null);
   };
 
   const handleFileChange = (e) => {
@@ -65,18 +67,8 @@ function Upload() {
     setErrorMessage(null);
   };
 
-  const handleConfirmSubmit = async () => {
-    // This function executes after user confirms in the modal
-    setShowConfirmation(false); // Hide the modal
-    handleSubmitActual(); // Proceed with the actual submit logic
-  };
-
-  const handleSubmit = () => {
-    // Before actually submitting, show the confirmation dialog
-    setShowConfirmation(true);
-  };
-
-  const handleSubmitActual = async () => {
+  // Step 1: Convert file and trigger local download before confirmation
+  const handleConvertAndDownload = () => {
     if (!file || !selectedSupplier || !buyer || !selectedSeason) {
       setErrorMessage('Please fill out all the mandatory fields.');
       return;
@@ -87,79 +79,100 @@ function Upload() {
       return;
     }
 
-    try {
-      const fileReader = new FileReader();
-      fileReader.onload = async (event) => {
-        try {
-          const arrayBuffer = event.target.result;
+    const fileReader = new FileReader();
+    fileReader.onload = async (event) => {
+      try {
+        const arrayBuffer = event.target.result;
 
-          // Step 1: Convert to XML
-          const result = convert(
-            arrayBuffer,
-            selectedSupplier,
-            selectedBrand,
-            buyer,
-            selectedSeason,
-            selectedPhase,
-            lifestage,
-            gender,
-            ST_user,
-            selectedTicketType,
-            poLocation,
-            poType,
-            poEDI,
-            priceTag,
-            selectedLifestyleDetail,
-            notBefore,
-            notAfter,
-            multiplicationFactor,
-            lifestyle
-          );
+        // Convert the file to XML
+        const result = convert(
+          arrayBuffer,
+          selectedSupplier,
+          selectedBrand,
+          buyer,
+          selectedSeason,
+          selectedPhase,
+          lifestage,
+          gender,
+          ST_user,
+          selectedTicketType,
+          poLocation,
+          poType,
+          poEDI,
+          priceTag,
+          selectedLifestyleDetail,
+          notBefore,
+          notAfter,
+          multiplicationFactor,
+          lifestyle
+        );
 
-          if (result.success) {
-            const xmlBlob = new Blob([result.xmlString], { type: 'application/xml' });
-
-            // Step 2: Trigger Download Locally
-            const downloadUrl = window.URL.createObjectURL(xmlBlob);
-            const link = document.createElement('a');
-            link.href = downloadUrl;
-            link.setAttribute('download', 'output.xml');
-            document.body.appendChild(link);
-            link.click();
-            link.remove();
-
-            console.log('File downloaded successfully.');
-
-            // Step 3: Send File to API Gateway Proxy
-            const proxyUrl = 'https://bhk9mub853.execute-api.eu-north-1.amazonaws.com/beta-proxy';
-            try {
-              const response = await axios.post(proxyUrl, xmlBlob, {
-                headers: { 'Content-Type': 'application/octet-stream' },
-              });
-            
-              if (response.status === 200) {
-                //alert('Endpoint received the file.');
-                console.log('File sent to API Gateway proxy successfully.');
-                setShowSuccessToast(true); 
-                resetForm();
-              } else {
-                setErrorMessage('Server did not acknowledge the file.');
-              }
-            } catch (error) {
-              console.error('Error sending file:', error);
-              setErrorMessage('An error occurred while sending the file.');
-            }
-          } else {
-            setErrorMessage(`Conversion failed: ${result.error}`);
-          }
-        } catch (conversionError) {
-          setErrorMessage(`Conversion error: ${conversionError.message}`);
+        // Check if conversion was successful
+        if (!result.success) {
+          setErrorMessage(`Conversion failed: ${result.error}`);
+          return;
         }
-      };
 
-      fileReader.readAsArrayBuffer(file);
-    } catch (error) {
+        // Check if the XML content appears empty or unreadable
+        if (result.xmlString.includes('<Value AttributeID="att_fields">[]</Value>')) {
+          setErrorMessage('Error: File can\'t be delivered as it appears empty or unread.');
+          return;
+        }
+
+        // Create a Blob from the XML string
+        const xmlBlob = new Blob([result.xmlString], { type: 'application/xml' });
+
+        // Trigger the local download of the file
+        const downloadUrl = window.URL.createObjectURL(xmlBlob);
+        const link = document.createElement('a');
+        link.href = downloadUrl;
+        link.setAttribute('download', 'output.xml');
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+
+        // Save the converted file for later sending
+        setConvertedBlob(xmlBlob);
+
+        // Now show the confirmation modal for sending to the API Gateway
+        setShowConfirmation(true);
+      } catch (conversionError) {
+        setErrorMessage(`Conversion error: ${conversionError.message}`);
+      }
+    };
+
+    fileReader.onerror = (error) => {
       setErrorMessage(`File reading error: ${error.message}`);
+    };
+
+    fileReader.readAsArrayBuffer(file);
+  };
+
+  // Step 2: Send the converted file to the API Gateway after confirmation
+  const handleConfirmSubmit = async () => {
+    setShowConfirmation(false); // Hide the modal
+
+    if (!convertedBlob) {
+      setErrorMessage("No converted file available for sending.");
+      return;
+    }
+
+    const proxyUrl = 'https://bhk9mub853.execute-api.eu-north-1.amazonaws.com/beta-proxy';
+    try {
+      const response = await axios.post(proxyUrl, convertedBlob, {
+        headers: { 'Content-Type': 'application/octet-stream' },
+      });
+
+      if (response.status === 200) {
+        console.log('File sent to API Gateway proxy successfully.');
+        setShowSuccessToast(true);
+        resetForm();
+      } else {
+        setErrorMessage('Server did not acknowledge the file.');
+      }
+    } catch (error) {
+      console.error('Error sending file:', error);
+      setErrorMessage('An error occurred while sending the file.');
     }
   };
 
@@ -201,7 +214,7 @@ function Upload() {
           <Modal.Title>Confirm Action</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          Are you sure you want to send this? This action cannot be undone.
+          Are you sure you want to send the file to the server? This action cannot be undone.
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={() => setShowConfirmation(false)}>Cancel</Button>
@@ -328,9 +341,9 @@ function Upload() {
                 {/* Right Column Fields */}
                 <Form.Group className="mb-3">
                   <Form.Label>Ticket Type</Form.Label>
-                  <Form.Select 
-                    aria-label="Select Ticket Type" 
-                    onChange={(e) => setSelectedTicketType(e.target.value)} 
+                  <Form.Select
+                    aria-label="Select Ticket Type"
+                    onChange={(e) => setSelectedTicketType(e.target.value)}
                     value={selectedTicketType || ""}
                   >
                     <option>Select...</option>
@@ -396,7 +409,8 @@ function Upload() {
               </Col>
             </Row>
           </Form>
-          <SubmitButton onClick={handleSubmit} />
+          {/* When the user clicks submit, the file will be converted, downloaded, and then the confirmation modal appears */}
+          <SubmitButton onClick={handleConvertAndDownload} />
         </Col>
       </Row>
     </Container>
