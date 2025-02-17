@@ -334,7 +334,6 @@ function Upload() {
                 <Form.Group className="mb-3">
                   <Form.Label>PO Type</Form.Label>
                   <Form.Select aria-label="Select PO Type" onChange={(e) => setPOType(e.target.value)} value={poType}>
-                    <option>Select...</option>
                     {poTypes.map((type, index) => (
                       <option key={index} value={type}>{type}</option>
                     ))}
