@@ -3,7 +3,7 @@ import { Container, Row, Col, Form, Alert, Modal, Button, Toast, ToastContainer 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Select from 'react-select';
 import { convert, allowedFile } from "./excelToXml";  // Ensure this is correctly implemented
-import { suppliers, buyers, seasons, phases, lifestyles, lifestages, genders, ST_users, ticketTypes, poLocations, poTypes, poEDIs, orderPriceTags, lifestyleDetails, multiplicationFactorOptions, brands } from './constants';
+import { suppliers, buyers, seasons, phases, lifestages, genders, ST_users, ticketTypes, poLocations, poTypes, poEDIs, orderPriceTags, multiplicationFactorOptions, brands } from './constants';
 import SubmitButton from './SubmitButton';  // Import the new component
 import '../styles/styles.css';
 import axios from 'axios';
@@ -16,7 +16,6 @@ function Upload() {
   const [buyer, setBuyer] = useState("");
   const [selectedSeason, setSelectedSeason] = useState("");
   const [selectedPhase, setSelectedPhase] = useState("");
-  const [lifestyle, setLifestyle] = useState("");
   const [lifestage, setLifestage] = useState("");
   const [gender, setGender] = useState("");
   const [ST_user, setSTUser] = useState("");
@@ -27,10 +26,8 @@ function Upload() {
   const [priceTag, setPriceTag] = useState("");
   const [notBefore, setNotBefore] = useState("");
   const [notAfter, setNotAfter] = useState("");
-  const [selectedLifestyleDetail, setSelectedLifestyleDetail] = useState("");
   const [multiplicationFactor, setMultiplicationFactor] = useState("");
   const [fileInputKey, setFileInputKey] = useState(Date.now());
-
   const [showConfirmation, setShowConfirmation] = useState(false);
   const [showSuccessToast, setShowSuccessToast] = useState(false);
   const [convertedBlob, setConvertedBlob] = useState(null); // State to store the converted XML file
@@ -46,7 +43,6 @@ function Upload() {
     setBuyer("");
     setSelectedSeason("");
     setSelectedPhase("");
-    setLifestyle("");
     setLifestage("");
     setGender("");
     setSTUser("");
@@ -57,10 +53,10 @@ function Upload() {
     setPriceTag("");
     setNotBefore("");
     setNotAfter("");
-    setSelectedLifestyleDetail("");
     setMultiplicationFactor("");
     setFileInputKey(Date.now());
     setConvertedBlob(null);
+    setDealInfo("");
   };
 
   const handleFileChange = (e) => {
@@ -70,7 +66,7 @@ function Upload() {
 
   // Step 1: Convert file and trigger local download before confirmation
   const handleConvertAndDownload = () => {
-    if (!file || !selectedSupplier || !buyer || !selectedSeason) {
+    if (!file || !selectedSupplier || !buyer || !ST_user) {
       setErrorMessage('Please fill out all the mandatory fields.');
       return;
     }
@@ -85,7 +81,7 @@ function Upload() {
       try {
         const arrayBuffer = event.target.result;
 
-        // Convert the file to XML
+        // Convert the file to XML (note: lifestyle parameters have been removed)
         const result = convert(
           arrayBuffer,
           selectedSupplier,
@@ -101,11 +97,9 @@ function Upload() {
           poType,
           poEDI,
           priceTag,
-          selectedLifestyleDetail,
           notBefore,
           notAfter,
           multiplicationFactor,
-          lifestyle,
           dealInfo
         );
 
@@ -176,15 +170,6 @@ function Upload() {
       console.error('Error sending file:', error);
       setErrorMessage('An error occurred while sending the file.');
     }
-  };
-
-  const handleLifestyleChange = (selectedOption) => {
-    setLifestyle(selectedOption ? selectedOption.value : "");
-    setSelectedLifestyleDetail(""); // Reset lifestyle detail on lifestyle change
-  };
-
-  const handleLifestyleDetailChange = (selectedOption) => {
-    setSelectedLifestyleDetail(selectedOption ? selectedOption.value : "");
   };
 
   const brandOptions = selectedSupplier ? brands[selectedSupplier.value] || [] : [];
@@ -265,11 +250,16 @@ function Upload() {
                   </Form.Select>
                 </Form.Group>
                 <Form.Group className="mb-3">
-                  <Form.Label>Season <span style={{ color: "red" }}>*</span></Form.Label>
-                  <Form.Select aria-label="Select Season" onChange={(e) => {
-                    setSelectedSeason(parseInt(e.target.value));
-                    setSelectedPhase(""); // Reset phase on season change
-                  }} value={selectedSeason} required>
+                  <Form.Label>Season </Form.Label>
+                  <Form.Select
+                    aria-label="Select Season"
+                    onChange={(e) => {
+                      setSelectedSeason(parseInt(e.target.value));
+                      setSelectedPhase(""); // Reset phase on season change
+                    }}
+                    value={selectedSeason}
+                    required
+                  >
                     <option>Select...</option>
                     {seasons.map((s) => (
                       <option key={s.value} value={s.value}>{s.label}</option>
@@ -295,28 +285,6 @@ function Upload() {
                   </Form.Select>
                 </Form.Group>
                 <Form.Group className="mb-3">
-                  <Form.Label>Lifestyle</Form.Label>
-                  <Select
-                    options={lifestyles.map(l => ({ value: l, label: l }))}
-                    value={lifestyle ? { value: lifestyle, label: lifestyle } : null}
-                    onChange={handleLifestyleChange}
-                    placeholder="Select..."
-                    isSearchable={true}
-                  />
-                </Form.Group>
-                {lifestyle !== "None" && lifestyle && (
-                  <Form.Group className="mb-3">
-                    <Form.Label>{`${lifestyle}'s Lifestyle`}</Form.Label>
-                    <Select
-                      options={lifestyleDetails[lifestyle] || []}
-                      value={selectedLifestyleDetail ? { value: selectedLifestyleDetail, label: selectedLifestyleDetail } : null}
-                      onChange={handleLifestyleDetailChange}
-                      placeholder="Select..."
-                      isSearchable={true}
-                    />
-                  </Form.Group>
-                )}
-                <Form.Group className="mb-3">
                   <Form.Label>Gender</Form.Label>
                   <Form.Select aria-label="Select Gender" onChange={(e) => setGender(e.target.value)} value={gender}>
                     <option>Select...</option>
@@ -326,7 +294,7 @@ function Upload() {
                   </Form.Select>
                 </Form.Group>
                 <Form.Group className="mb-3">
-                  <Form.Label>ST User</Form.Label>
+                  <Form.Label>ST User <span style={{ color: "red" }}>*</span></Form.Label>
                   <Form.Select aria-label="Select ST User" onChange={(e) => setSTUser(e.target.value)} value={ST_user}>
                     <option>Select...</option>
                     {ST_users.map((user, index) => (
@@ -408,7 +376,7 @@ function Upload() {
                     isSearchable={true}
                   />
                 </Form.Group>
-                 <Form.Group className="mb-3">
+                <Form.Group className="mb-3">
                   <Form.Label>Po Exclusive Deal</Form.Label>
                   <Form.Control
                     type="number"
