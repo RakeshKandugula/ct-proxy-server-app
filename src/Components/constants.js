@@ -201,7 +201,7 @@ export const phases = {
   // Define phase values for other seasons as needed
 };
 export const lifestyles = ["Mens", "Womens", "Kids", "None"];
-export const lifestages = ["Adult", "Teen", "Kids", "Infant"];
+export const lifestages = ["Adult", "Kids"];
 export const genders = ["Men", "Women", "Boys", "Girls", "Unisex"];
 export const ST_users = ["PROKING", "ABELKAR", "LOREEGI", "PAAJJOH", "EXTSABA", "SUKKSHA", "KANDRAK", "KLIMMAK", "PIIPPI", "HUTTING", "NIKKJEN"];
 
