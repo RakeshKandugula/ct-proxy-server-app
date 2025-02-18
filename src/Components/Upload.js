@@ -21,7 +21,7 @@ function Upload() {
   const [ST_user, setSTUser] = useState("");
   const [selectedTicketType, setSelectedTicketType] = useState("");
   const [poLocation, setPOLocation] = useState("");
-  const [poType, setPOType] = useState("");
+  const [poType, setPOType] = useState("PRE");
   const [poEDI, setPOEDI] = useState("");
   const [priceTag, setPriceTag] = useState("");
   const [notBefore, setNotBefore] = useState("");
