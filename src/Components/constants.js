@@ -214,8 +214,8 @@ export const ticketTypes = [
 
 export const poLocations = ["Distribution Centre B&M", "Distribution Centre DR warehouse", "Helsinki Departmental Store", "Itis Departmental Store", "Jumbo Departmental Store", "Riga Departmental Store", "Tallinn Departmental Store", "Tampere Departmental Store", "Tapiola Departmental Store", "Turku Departmental Store"];
 export const poTypes = ["PRE","AdHoc", "CD", "LC"];
-export const poEDIs = ["yes", "no"];
-export const orderPriceTags = ["yes", "no"];
+export const poEDIs = ["Yes", "No"];
+export const orderPriceTags = ["Yes", "No"];
 
 export const lifestyleDetails = {
   Womens: [
