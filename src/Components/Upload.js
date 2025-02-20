@@ -376,7 +376,7 @@ function Upload() {
                   />
                 </Form.Group>
                 <Form.Group className="mb-3">
-                  <Form.Label>Po Exclusive Deal</Form.Label>
+                  <Form.Label>PO Exclusive Deal</Form.Label>
                   <Form.Control
                     type="number"
                     value={dealInfo}
