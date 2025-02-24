@@ -20,4 +20,4 @@ artifacts:
     - '**/*'
   base-directory: output
   discard-paths: no
-#
+#s
