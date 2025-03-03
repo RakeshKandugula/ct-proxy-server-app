@@ -206,9 +206,16 @@ export const genders = ["Men", "Women", "Boys", "Girls", "Unisex"];
 export const ST_users = ["PROKING", "ABELKAR", "LOREEGI", "PAAJJOH", "EXTSABA", "SUKKSHA", "KANDRAK", "KLIMMAK", "PIIPPI", "HUTTING", "NIKKJEN"];
 
 export const ticketTypes = [
-  { value: "330F", label: "330F" },
+  { value: "RF29", label: "RF29" },
   { value: "RF34", label: "RF34" },
   { value: "911F", label: "911F" },
+  { value: "210F", label: "210F" },
+  { value: "324F", label: "324F" },
+  { value: "724F", label: "724F" },
+  { value: "110F", label: "110F" },
+  { value: "320F", label: "320F" },
+  { value: "720F", label: "720F" },
+  { value: "230F", label: "230F" },
   { value: "SE", label: "SE" }
 ];
 
