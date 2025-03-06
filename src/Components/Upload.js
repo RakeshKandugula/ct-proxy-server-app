@@ -47,10 +47,10 @@ function Upload() {
     setGender("");
     setSTUser("");
     setSelectedTicketType("");
-    setPOLocation("");
-    setPOType("");
-    setPOEDI("");
-    setPriceTag("");
+    setPOLocation("Distribution Centre B&M");
+    setPOType("PRE");
+    setPOEDI("No");
+    setPriceTag("No");
     setNotBefore("");
     setNotAfter("");
     setMultiplicationFactor("");
