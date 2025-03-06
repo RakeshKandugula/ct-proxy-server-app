@@ -66,7 +66,7 @@ function Upload() {
 
   // Step 1: Convert file and trigger local download before confirmation
   const handleConvertAndDownload = () => {
-    if (!file || !selectedSupplier || !buyer || !ST_user) {
+    if (!file || !selectedSupplier || !buyer || !ST_user|| !lifestage) {
       setErrorMessage('Please fill out all the mandatory fields.');
       return;
     }
@@ -276,7 +276,7 @@ function Upload() {
                   </Form.Select>
                 </Form.Group>
                 <Form.Group className="mb-3">
-                  <Form.Label>Consumer Lifestage</Form.Label>
+                  <Form.Label>Consumer Lifestage <span style={{ color: "red" }}>*</span></Form.Label>
                   <Form.Select aria-label="Select Lifestage" onChange={(e) => setLifestage(e.target.value)} value={lifestage}>
                     <option>Select...</option>
                     {lifestages.map((ls, index) => (
