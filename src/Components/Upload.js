@@ -66,7 +66,7 @@ function Upload() {
 
   // Step 1: Convert file and trigger local download before confirmation
   const handleConvertAndDownload = () => {
-    if (!file || !selectedSupplier || !buyer || !ST_user|| !lifestage) {
+    if (!file || !selectedSupplier || !buyer || !ST_user || !lifestage) {
       setErrorMessage('Please fill out all the mandatory fields.');
       return;
     }
