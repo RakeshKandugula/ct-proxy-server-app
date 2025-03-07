@@ -243,8 +243,9 @@ function Upload() {
                 <Form.Group className="mb-3">
                   <Form.Label>Assortment Lead <span style={{ color: "red" }}>*</span></Form.Label>
                   <Form.Select aria-label="Select Assortment Lead" onChange={(e) => setBuyer(e.target.value)} value={buyer} required>
+                  <option value="" disabled selected>Select Assortment Lead...</option>
                     {buyers.map((b, index) => (
-                      <option key={index} value={b}>{b}</option>
+                  <option key={index} value={b}>{b}</option>         
                     ))}
                   </Form.Select>
                 </Form.Group>
