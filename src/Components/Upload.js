@@ -16,9 +16,9 @@ function Upload() {
   const [buyer, setBuyer] = useState(null);
   const [selectedSeason, setSelectedSeason] = useState("");
   const [selectedPhase, setSelectedPhase] = useState("");
-  const [lifestage, setLifestage] = useState("");
+  const [lifestage, setLifestage] = useState(null);
   const [gender, setGender] = useState("");
-  const [ST_user, setSTUser] = useState("");
+  const [ST_user, setSTUser] = useState(null);
   const [selectedTicketType, setSelectedTicketType] = useState("");
   const [poLocation, setPOLocation] = useState("Distribution Centre B&M");
   const [poType, setPOType] = useState("PRE");
@@ -43,9 +43,9 @@ function Upload() {
     setBuyer(null);
     setSelectedSeason("");
     setSelectedPhase("");
-    setLifestage("");
+    setLifestage(null);
     setGender("");
-    setSTUser("");
+    setSTUser(null);
     setSelectedTicketType("");
     setPOLocation("Distribution Centre B&M");
     setPOType("PRE");
@@ -277,10 +277,10 @@ function Upload() {
                 </Form.Group>
                 <Form.Group className="mb-3">
                   <Form.Label>Consumer Lifestage <span style={{ color: "red" }}>*</span></Form.Label>
-                  <Form.Select aria-label="Select Lifestage" onChange={(e) => setLifestage(e.target.value)} value={lifestage}>
-                    <option>Select...</option>
+                  <Form.Select aria-label="Select Lifestage" onChange={(e) => setLifestage(e.target.value)} value={lifestage} required>
+                  <option value="" disabled selected>Select Consumer Lifestage...</option>
                     {lifestages.map((ls, index) => (
-                      <option key={index} value={ls}>{ls}</option>
+                  <option key={index} value={ls}>{ls}</option>
                     ))}
                   </Form.Select>
                 </Form.Group>
@@ -295,10 +295,10 @@ function Upload() {
                 </Form.Group>
                 <Form.Group className="mb-3">
                   <Form.Label>ST User <span style={{ color: "red" }}>*</span></Form.Label>
-                  <Form.Select aria-label="Select ST User" onChange={(e) => setSTUser(e.target.value)} value={ST_user}>
-                    <option>Select...</option>
+                  <Form.Select aria-label="Select ST User" onChange={(e) => setSTUser(e.target.value)} value={ST_user} required>
+                  <option value="" disabled selected>Select ST User...</option>
                     {ST_users.map((user, index) => (
-                      <option key={index} value={user}>{user}</option>
+                  <option key={index} value={user}>{user}</option>
                     ))}
                   </Form.Select>
                 </Form.Group>
