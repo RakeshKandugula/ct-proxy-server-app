@@ -13,7 +13,7 @@ function Upload() {
   const [errorMessage, setErrorMessage] = useState(null);
   const [selectedSupplier, setSelectedSupplier] = useState(null);
   const [selectedBrand, setSelectedBrand] = useState("");
-  const [buyer, setBuyer] = useState("");
+  const [buyer, setBuyer] = useState(null);
   const [selectedSeason, setSelectedSeason] = useState("");
   const [selectedPhase, setSelectedPhase] = useState("");
   const [lifestage, setLifestage] = useState("");
