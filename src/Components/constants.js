@@ -57,10 +57,7 @@ export const brands = {
     { value: "Timberland", label: "Timberland" },
     { value: "Eastpak", label: "Eastpak" }
   ],
-  Marc_OPolo_International_GmbH: [
-    { value: "Denim", label: "Denim" },
-    { value: "Other", label: "Other" }
-  ],
+//remove marc o polo brand logic
   ADIDAS_SUOMI_OY: [
     { value: "ADIDAS_SUOMI_OY(RTW)", label: "ADIDAS_SUOMI_OY(RTW)" },
     { value: "ADIDAS_SUOMI_OY(Sports)", label: "ADIDAS_SUOMI_OY(Sports)" }
