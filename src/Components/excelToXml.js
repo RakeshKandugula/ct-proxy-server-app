@@ -18,7 +18,7 @@ function getUniqueHeaders(headers) {
   var result = [];
   for (var i = 0; i < headers.length; i++) {
     var sanitized = sanitizeKey(headers[i]);
-    if (!headerCounts.hasOwnProperty(sanitized)) {
+    if (!headerCounts.hasOwnProperty(sanitized) && sanitized) {
       headerCounts[sanitized] = 1;
       result.push(sanitized);
     } else {
