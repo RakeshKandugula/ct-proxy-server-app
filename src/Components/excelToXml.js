@@ -115,7 +115,7 @@ function convert(
       }
       console.log(fullRange.s);
      data = XLSX.utils.sheet_to_json(sheet, { header: 1, range: fullRange });
-    }else if (supplierName === "VIKING_JALKINEET_OY_VANTAA") {
+    }else if (supplierName === "VIKING_JALKINEET_OY") {
       const sheet = workbook.Sheets[sheetName];
       const fullRange = XLSX.utils.decode_range(sheet['!ref']);
       fullRange.s.r=findHeaderRow(sheet);
