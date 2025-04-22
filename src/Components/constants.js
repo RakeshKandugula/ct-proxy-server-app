@@ -54,7 +54,8 @@ export const suppliers = [
   { value: "MULBERRY_GROUP_PLC", label: "MULBERRY_GROUP_PLC" },
   { value: "DR_MARTENS_AIRWAIR_WHOLESALE_LIMITED", label: "DR_MARTENS_AIRWAIR_WHOLESALE_LIMITED" },
   { value: "FALKE_KGAA_SCHMALLENBERG", label: "FALKE_KGAA" },
-  { value: "VIKING_JALKINEET_OY", label: "VIKING_JALKINEET_OY" }
+  { value: "VIKING_JALKINEET_OY", label: "VIKING_JALKINEET_OY" },
+  { value: "REIMA_EUROPE_OY_/_PL_VAT", label: "REIMA_EUROPE_OY_/_PL_VAT" }
 ];
 
 
