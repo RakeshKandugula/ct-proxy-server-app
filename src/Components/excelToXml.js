@@ -2,7 +2,7 @@ import * as XLSX from 'xlsx';
 import * as xmlbuilder from 'xmlbuilder';
 
 function allowedFile(filename) {
-  return filename.split('.').pop().toLowerCase() === 'xlsx';
+  return filename.split('.').pop().toLowerCase() === 'xlsx'|| return filename.split('.').pop().toLowerCase() === 'xls';
 }
 
 function sanitizeKey(key) {
