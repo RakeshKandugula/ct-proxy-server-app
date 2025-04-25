@@ -48,6 +48,7 @@ function findHeaderRow(sheet) {
 
 
 function convert(
+  file,
   arrayBuffer,
   supplier,
   brand,
@@ -67,9 +68,21 @@ function convert(
   mf,
   dealInfo
 ) {
-  const supplierName = supplier['value'];
-  const workbook = XLSX.read(arrayBuffer, { type: 'array' });
+  const inputFileName = file.name;
+  let workbook="";
+  if (inputFileName.includes('csv')) {
+    // Handle CSV file
+    console.log(inputFileName);
+    const csvContent = new TextDecoder('utf-8').decode(arrayBuffer);
+     workbook = XLSX.read(csvContent, { type: 'string', raw: true });
+  } else {
+    // Handle Excel file
+    console.log(inputFileName);
+     workbook = XLSX.read(arrayBuffer, { type: 'array' });
+  }
   
+  const supplierName = supplier['value'];
+  //const workbook = XLSX.read(arrayBuffer, { type: 'array' });  
   const sheetName = workbook.SheetNames[0];
   console.log(`Sheet name: ${sheetName}`);
 
@@ -85,6 +98,8 @@ function convert(
   } else if (supplierName === "VAGABOND_FINLAND_OY") {
     data = XLSX.utils.sheet_to_json(workbook.Sheets[sheetName], { header: 1, range: 2 });
   }else if (supplierName === "BESTSELLER_WHOLESALE_FINLAND_OY") {
+    data = XLSX.utils.sheet_to_json(workbook.Sheets[sheetName], { header: 1, raw: false });
+  }else if (supplierName === "FALKE_KGAA_SCHMALLENBERG") {
     data = XLSX.utils.sheet_to_json(workbook.Sheets[sheetName], { header: 1, raw: false });
   }else if (supplierName === "testsupplier1" || supplierName === "testsupplier2") {
     console.log(`Sheet name: ${supplierName}`);
