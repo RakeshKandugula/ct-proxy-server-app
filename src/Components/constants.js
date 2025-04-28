@@ -56,7 +56,9 @@ export const suppliers = [
   { value: "FALKE_KGAA_SCHMALLENBERG", label: "FALKE_KGAA" },
   { value: "VIKING_JALKINEET_OY", label: "VIKING_JALKINEET_OY" },
   { value: "REIMA_EUROPE_OY_/_PL_VAT", label: "REIMA_EUROPE_OY_/_PL_VAT" },
-  { value: "ECCO_KENKA_OY", label: "ECCO_KENKA_OY" }
+  { value: "ECCO_KENKA_OY", label: "ECCO_KENKA_OY" },
+  { value: "TIGER_OF_SWEDEN_FINLAND_OY", label: "TIGER_OF_SWEDEN_FINLAND_OY" },
+  { value: "BIRKENSTOCK_GMBH_&_KG", label: "BIRKENSTOCK_GMBH_&_KG" }
 ];
 
 
