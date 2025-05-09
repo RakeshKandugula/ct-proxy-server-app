@@ -74,6 +74,12 @@ export const brands = {
   ADIDAS_SUOMI_OY: [
     { value: "ADIDAS_SUOMI_OY(RTW)", label: "ADIDAS_SUOMI_OY(RTW)" },
     { value: "ADIDAS_SUOMI_OY(Sports)", label: "ADIDAS_SUOMI_OY(Sports)" }
+  ],
+  DK_COMPANY_FINLAND_OY: [
+    { value: "Gestuz", label: "Gestuz" },
+    { value: "Part Two", label: "Part Two" },
+    { value: "Matinique", label: "Matinique" },
+    { value: "My Essential Wardrobe", label: "My Essential Wardrobe" }
   ]
 };
 
