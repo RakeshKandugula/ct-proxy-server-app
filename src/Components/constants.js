@@ -12,65 +12,13 @@ export const multiplicationFactorOptions = [
   { value: 3.5, label: 3.5 }
 ];
 
-
-export const suppliers = [
-  { value: "ACC3SS_OY", label: "ACC3SS_OY" },
-  { value: "ACNE_STUDIOS_AB", label: "ACNE_STUDIOS_AB" },
-  { value: "ADIDAS_SUOMI_OY", label: "ADIDAS_SUOMI_OY" },
-  { value: "ANDIATA_OY", label: "ANDIATA_OY" },
-  { value: "GIORGIO_ARMANI_S.P.A.", label: "GIORGIO_ARMANI_S.P.A." },
-  { value: "BESTSELLER_WHOLESALE_FINLAND_OY", label: "BESTSELLER_WHOLESALE_FINLAND_OY" },
-  { value: "C.W.F._CHILDREN_WORLDWIDE_FASHION", label: "C.W.F._CHILDREN_WORLDWIDE_FASHION" },
-  { value: "STICHD_BV_HERTOGENBOSCH", label: "STICHD_BV_HERTOGENBOSCH" },
-  { value: "DIDRIKSONS_FINLAND_OY", label: "DIDRIKSONS_FINLAND_OY" },
-  { value: "DK_COMPANY_FINLAND_OY", label: "DK_COMPANY_FINLAND_OY" },
-  { value: "KAIKO_CLOTHING_COMPANY_OY", label: "KAIKO_CLOTHING_COMPANY_OY" },
-  { value: "KNOWLEDGE_COTTON_APPAREL_A/S", label: "KNOWLEDGE_COTTON_APPAREL_A/S" },
-  { value: "LIEWOOD_A/S", label: "LIEWOOD_A/S" },
-  { value: "MAKIA_CLOTHING_OY", label: "MAKIA_CLOTHING_OY" },
-  { value: "Marc_OPolo_International_GmbH", label: "Marc_OPolo_International_GmbH" },
-  { value: "DEDIMAX_S.R.L.", label: "DEDIMAX_S.R.L." },
-  { value: "MARIMEKKO_OYJ", label: "MARIMEKKO_OYJ" },
-  { value: "MAYORAL_MODA_INFANTIL_SAU", label: "MAYORAL_MODA_INFANTIL_SAU" },
-  { value: "METSOLA_LIFESTYLE_OY", label: "METSOLA_LIFESTYLE_OY" },
-  { value: "MINI_RODINI_AB", label: "MINI_RODINI_AB" },
-  { value: "MODSTROM_APS", label: "MODSTROM_APS" },
-  { value: "MOLO_A/S", label: "MOLO_A/S" },
-  { value: "MOSS_CPH_A/S", label: "MOSS_CPH_A/S" },
-  { value: "NANSO_GROUP_OY", label: "NANSO_GROUP_OY" },
-  { value: "ONLINE_TEXTILE_SOLUTIONS_A/S", label: "ONLINE_TEXTILE_SOLUTIONS_A/S" },
-  { value: "PRO_FASHION_OY", label: "PRO_FASHION_OY" },
-  { value: "PVH_FINLAND_OY", label: "PVH_FINLAND_OY" },
-  { value: "RALPH_LAUREN_SCANDINAVIA_AB_STOCKHOL", label: "RALPH_LAUREN_SCANDINAVIA_AB_STOCKHOL" },
-  { value: "SAND_CPH_A/S", label: "SAND_CPH_A/S" },
-  { value: "SANETTA,__GEBRUDER_AMMANN_GMBH_&_CO._KG", label: "SANETTA,__GEBRUDER_AMMANN_GMBH_&_CO._KG" },
-  { value: "SECOND_FEMALE_APS", label: "SECOND_FEMALE_APS" },
-  { value: "testsupplier1", label: "testsupplier1" },
-  { value: "testsupplier2", label: "testsupplier2" },
-  { value: "VAGABOND_FINLAND_OY", label: "VAGABOND_FINLAND_OY" },
-  { value: "VF_SCANDINAVIA_A/S", label: "VF_SCANDINAVIA_A/S" },
-  { value: "LONGCHAMP_SAS", label: "LONGCHAMP_SAS" },
-  { value: "VILA_FINLAND_OY", label: "VILA_FINLAND_OY" },
-  { value: "MULBERRY_GROUP_PLC", label: "MULBERRY_GROUP_PLC" },
-  { value: "DR_MARTENS_AIRWAIR_WHOLESALE_LIMITED", label: "DR_MARTENS_AIRWAIR_WHOLESALE_LIMITED" },
-  { value: "FALKE_KGAA_SCHMALLENBERG", label: "FALKE_KGAA" },
-  { value: "VIKING_JALKINEET_OY", label: "VIKING_JALKINEET_OY" },
-  { value: "REIMA_EUROPE_OY_/_PL_VAT", label: "REIMA_EUROPE_OY_/_PL_VAT" },
-  { value: "ECCO_KENKA_OY", label: "ECCO_KENKA_OY" },
-  { value: "TIGER_OF_SWEDEN_FINLAND_OY", label: "TIGER_OF_SWEDEN_FINLAND_OY" },
-  { value: "BIRKENSTOCK_GMBH_&_KG", label: "BIRKENSTOCK_GMBH_&_KG" },
-  { value: "OSCAR_JACOBSON_AB", label: "OSCAR_JACOBSON_AB" },
-  { value: "OPUS_GMBH", label: "OPUS_GMBH" }
-];
-
-
+export { getSupplierOptions as suppliers } from './supplierData';
 
 export const brands = {
   "VF_SCANDINAVIA_A/S": [
     { value: "Timberland", label: "Timberland" },
     { value: "Eastpak", label: "Eastpak" }
   ],
-//remove marc o polo brand logic
   ADIDAS_SUOMI_OY: [
     { value: "ADIDAS_SUOMI_OY(RTW)", label: "ADIDAS_SUOMI_OY(RTW)" },
     { value: "ADIDAS_SUOMI_OY(Sports)", label: "ADIDAS_SUOMI_OY(Sports)" }
@@ -82,8 +30,6 @@ export const brands = {
     { value: "My Essential Wardrobe", label: "My Essential Wardrobe" }
   ]
 };
-
-
 
 export const buyers = ["Anne Karhunen", "Antti Laiho", "Anu Kurki", "Eeva Siirama", "Eva Grondahl-Mykra", "Johanna Tarma", "Julia Koskilahti", "Katariina Ketola", "Kati Karhunsaari", "Kati Lewis-Sjoberg", "Kristiina Kuuskoski", "Laura Oksanen", "Maisa Jaansivu", "Michele Eller", "Minna Fichera", "Paivi Aho", "Paivi Jordas", "Pete Rahikainen", "Tiina Kuusvuori", "Tuula Luomi", "Ulrika Hedman"];
 //const seasons = ["Continuity","2023 SS","2023 AW","2024 SS","2024 AW","Seasonal"];
