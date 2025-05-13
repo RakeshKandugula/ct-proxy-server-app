@@ -7,6 +7,7 @@ export const suppliers = [
   "ACNE_STUDIOS_AB",
   "ADAG_APS",
   "ADOLF_RIEDL_GMBH_UND_CO",
+  "ADIDAS_SUOMI_OY",
   "AEFFEGI_S.R.L.",
   "AIAYU_APS",
   "AL_COLLECTION_OY_AB_(ALMADA_LABEL)",
@@ -93,7 +94,7 @@ export const suppliers = [
   "DRAGON_DIFFUSION_SPRL",
   "DSQUARED2_SPA",
   "EA_OJOJ_OY",
-  "ECCO_KENKÄ_OY",
+
   "EMU_AUSTRALIA_(EUROPE)_LTD_(NL)",
   "ENAMEL_COPENHAGEN_APS",
   "ESSENZA_HOME_B.V.",
@@ -104,7 +105,7 @@ export const suppliers = [
   "F_DIVISION_GROUP_AB",
   "FABIAN_TRADING_APS",
   "FABPATCH_OY",
-  "FALKE_KGAA",
+
   "FALKENBERGS_AGENTURER_AG",
   "FASHION_SOCIETY_AS",
   "FB-TOOLS_OY",
@@ -367,7 +368,8 @@ export const suppliers = [
 
 
 export const specialSuppliers = [
-  // Example: { value: "SPECIAL_VALUE", label: "Different Label" } //if needed only.
+  { value: "FALKE_KGAA_SCHMALLENBERG", label: "FALKE_KGAA" },
+  { value: "ECCO_KENKA_OY", label: "ECCO_KENKÄ_OY" }
 ];
 
 
