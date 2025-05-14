@@ -27,7 +27,7 @@ export const brands = {
     { value: "Gestuz", label: "Gestuz" },
     { value: "Part Two", label: "Part Two" },
     { value: "Matinique", label: "Matinique" },
-    { value: "My Essential Wardrobe", label: "My Essential Wardrobe" }
+    { value: "MWB", label: "My Essential Wardrobe" }
   ]
 };
 
