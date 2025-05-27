@@ -28,6 +28,11 @@ export const brands = {
     { value: "Part Two", label: "Part Two" },
     { value: "Matinique", label: "Matinique" },
     { value: "MWB", label: "My Essential Wardrobe" }
+  ],
+  MAYORAL_MODA_INFANTIL_SAU : [
+    { value: "Abel & Lula", label: "Abel & Lula" },
+    { value: "Mayoral", label: "Mayoral" },
+    { value: "Nukutavake", label: "Nukutavake" }
   ]
 };
 
