@@ -33,6 +33,20 @@ export const brands = {
     { value: "Abel & Lula", label: "Abel & Lula" },
     { value: "Mayoral", label: "Mayoral" },
     { value: "Nukutavake", label: "Nukutavake" }
+  ],
+   TRIUMPH_INTERNATIONAL_OY: [
+    { value: "Sloggi", label: "Sloggi" },
+    { value: "Triumph", label: "Triumph" }
+  ],
+  "Levi_Strauss_&_Co_EUROPE_DE": [
+    { value: "Levi's", label: "Levi's" },
+    { value: "Levi's 300", label: "Levi's 300" },
+    { value: "Levi's Plus", label: "Levi's Plus" },
+    { value: "Dockers", label: "Dockers" }
+  ],
+  "GIORGIO_ARMANI_S.P.A.": [
+    { value: "ARMANI EXCHANGE", label: "ARMANI EXCHANGE" },
+    { value: "Emporio Armani", label: "EMPORIO ARMANI" }
   ]
 };
 
