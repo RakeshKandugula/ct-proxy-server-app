@@ -183,8 +183,8 @@ function convert(
       let cellValue = data[i][j];
       if (typeof cellValue === 'string') {
         if(cellValue.startsWith('=') || cellValue.startsWith('\\')){
-         cellValue = cellValue.replace(/^[=\s\\]+/, ' ').trim();
-      }else{
+         cellValue = cellValue.replace(/\D/g, '');
+        }else{
        cellValue = cellValue.replace(/[\r\n]/g, ' ').trim();
       }
       }
