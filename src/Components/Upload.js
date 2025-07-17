@@ -195,7 +195,7 @@ function Upload() {
     setPOLocation(selectedOption);
     if (selectedOption === "Distribution Centre DR warehouse") {
       setPOType("CD");
-  } else if (selectedOption === "Distribution Centre B&M") {
+  } else if (["Distribution Centre B&M", "Helsinki Department Store", "Itis Department Store", "Jumbo Department Store", "Riga Department Store", "Tallinn Department Store", "Tampere Department Store", "Tapiola Department Store", "Turku Department Store"].includes(selectedOption)) {
       setPOType("PRE");
   }
   };
