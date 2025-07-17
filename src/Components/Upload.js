@@ -197,14 +197,16 @@ function Upload() {
       setPOType("CD");
   } else if (selectedOption === "Distribution Centre B&M") {
       setPOType("PRE");
-    }
+  }
   };
 
   const handlePOTypeChange = (selectedOption) => {
     setPOType(selectedOption);
     if (selectedOption === "CD") {
       setPOLocation("Distribution Centre DR warehouse");
-    }
+  } else if (selectedOption === "PRE") {
+      setPOLocation("Distribution Centre B&M");
+  }
   };
   
   return (
