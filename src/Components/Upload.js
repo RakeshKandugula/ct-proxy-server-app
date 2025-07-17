@@ -195,6 +195,8 @@ function Upload() {
     setPOLocation(selectedOption);
     if (selectedOption === "Distribution Centre DR warehouse") {
       setPOType("CD");
+  } else if (selectedOption === "Distribution Centre B&M") {
+      setPOType("PRE");
     }
   };
 
