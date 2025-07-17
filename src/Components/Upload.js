@@ -198,6 +198,13 @@ function Upload() {
     }
   };
 
+  const handlePOTypeChange = (selectedOption) => {
+    setPOType(selectedOption);
+    if (selectedOption === "CD") {
+      setPOLocation("Distribution Centre DR warehouse");
+    }
+  };
+  
   return (
     <Container className="bg-image">
       {/* Success Toast */}
@@ -346,7 +353,7 @@ function Upload() {
                 </Form.Group>
                 <Form.Group className="mb-3">
                   <Form.Label>PO Type</Form.Label>
-                  <Form.Select aria-label="Select PO Type" onChange={(e) => setPOType(e.target.value)} value={poType}>
+                  <Form.Select aria-label="Select PO Type" onChange={(e) => handlePOTypeChange(e.target.value)} value={poType}>
                     {poTypes.map((type, index) => (
                       <option key={index} value={type}>{type}</option>
                     ))}
