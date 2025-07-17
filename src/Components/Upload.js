@@ -193,7 +193,7 @@ function Upload() {
 
   const handlePOLocationChange = (selectedOption) => {
     setPOLocation(selectedOption);
-    if (selectedOption === "Distribution Centre DR warehouse")) {
+    if (selectedOption === "Distribution Centre DR warehouse") {
       setPOType("CD");
     }
   };
