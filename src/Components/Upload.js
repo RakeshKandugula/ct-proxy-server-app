@@ -191,6 +191,12 @@ function Upload() {
     setSelectedBrand(selectedOption);
   };
 
+  const handlePOLocationChange = (selectedOption) => {
+    setPOLocation(selectedOption);
+    if (selectedOption && (selectedOption.label === "Distribution Centre DR warehouse" || selectedOption.value === "Distribution Centre DR warehouse")) {
+    setPOType("CD");
+  };
+
   return (
     <Container className="bg-image">
       {/* Success Toast */}
