@@ -194,7 +194,8 @@ function Upload() {
   const handlePOLocationChange = (selectedOption) => {
     setPOLocation(selectedOption);
     if (selectedOption && (selectedOption.label === "Distribution Centre DR warehouse" || selectedOption.value === "Distribution Centre DR warehouse")) {
-    setPOType("CD");
+      setPOType("CD");
+    }
   };
 
   return (
@@ -256,7 +257,7 @@ function Upload() {
                 <Form.Group className="mb-3">
                   <Form.Label>Assortment Lead <span style={{ color: "red" }}>*</span></Form.Label>
                   <Form.Select aria-label="Select Assortment Lead" onChange={(e) => setBuyer(e.target.value)} value={buyer} required>
-                  <option value="" disabled selected>Select Assortment Lead...</option>
+                  <option value="" disabled>Select Assortment Lead...</option>
                     {buyers.map((b, index) => (
                   <option key={index} value={b}>{b}</option>         
                     ))}
@@ -291,7 +292,7 @@ function Upload() {
                 <Form.Group className="mb-3">
                   <Form.Label>Consumer Lifestage <span style={{ color: "red" }}>*</span></Form.Label>
                   <Form.Select aria-label="Select Lifestage" onChange={(e) => setLifestage(e.target.value)} value={lifestage} required>
-                  <option value="" disabled selected>Select Consumer Lifestage...</option>
+                  <option value="" disabled>Select Consumer Lifestage...</option>
                     {lifestages.map((ls, index) => (
                   <option key={index} value={ls}>{ls}</option>
                     ))}
@@ -309,7 +310,7 @@ function Upload() {
                 <Form.Group className="mb-3">
                   <Form.Label>ST User <span style={{ color: "red" }}>*</span></Form.Label>
                   <Form.Select aria-label="Select ST User" onChange={(e) => setSTUser(e.target.value)} value={ST_user} required>
-                  <option value="" disabled selected>Select ST User...</option>
+                  <option value="" disabled>Select ST User...</option>
                     {ST_users.map((user, index) => (
                   <option key={index} value={user}>{user}</option>
                     ))}
@@ -337,7 +338,7 @@ function Upload() {
                 </Form.Group>
                 <Form.Group className="mb-3">
                   <Form.Label>PO Location</Form.Label>
-                  <Form.Select aria-label="Select PO Location" onChange={(e) => setPOLocation(e.target.value)} value={poLocation}>
+                  <Form.Select aria-label="Select PO Location" onChange={(e) => handlePOLocationChange(e.target.value)} value={poLocation}>
                     {poLocations.map((location, index) => (
                       <option key={index} value={location}>{location}</option>
                     ))}
@@ -398,7 +399,7 @@ function Upload() {
             </Row>
           </Form>
           {/* When the user clicks submit, the file will be converted, downloaded, and then the confirmation modal appears */}
-          <SubmitButton onClick={handleConvertAndDownload} />
+          <SubmitButton onClick={() => handleConvertAndDownload()} />
         </Col>
       </Row>
     </Container>
