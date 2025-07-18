@@ -13,12 +13,12 @@ function Upload() {
   const [errorMessage, setErrorMessage] = useState(null);
   const [selectedSupplier, setSelectedSupplier] = useState(null);
   const [selectedBrand, setSelectedBrand] = useState("");
-  const [buyer, setBuyer] = useState(null);
+  const [buyer, setBuyer] = useState("");
   const [selectedSeason, setSelectedSeason] = useState("");
   const [selectedPhase, setSelectedPhase] = useState("");
-  const [lifestage, setLifestage] = useState(null);
+  const [lifestage, setLifestage] = useState("");
   const [gender, setGender] = useState("");
-  const [ST_user, setSTUser] = useState(null);
+  const [ST_user, setSTUser] = useState("");
   const [selectedTicketType, setSelectedTicketType] = useState("");
   const [poLocation, setPOLocation] = useState("Distribution Centre B&M");
   const [poType, setPOType] = useState("PRE");
