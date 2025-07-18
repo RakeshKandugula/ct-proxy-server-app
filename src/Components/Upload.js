@@ -196,14 +196,14 @@ function Upload() {
     if (selectedOption === "Distribution Centre DR warehouse") {
       setPOType("CD");
   } else if (["Distribution Centre B&M", "Helsinki Department Store", "Itis Department Store", "Jumbo Department Store", "Riga Department Store", "Tallinn Department Store", "Tampere Department Store", "Tapiola Department Store", "Turku Department Store"].includes(selectedOption)) {
-      setPOType("PRE");
+      setPOType("PRE" || "CD");
   }
   };
 
   const handlePOTypeChange = (selectedOption) => {
     setPOType(selectedOption);
     if (selectedOption === "CD") {
-      setPOLocation("Distribution Centre DR warehouse");
+      setPOLocation("Distribution Centre DR warehouse" || "Helsinki Department Store");
   } else if (selectedOption === "PRE") {
       setPOLocation("Distribution Centre B&M");
   }
