@@ -204,7 +204,7 @@ function Upload() {
     setPOType(selectedOption);
     if (selectedOption === "CD" && poLocation === "Distribution Centre B&M") {
       setPOLocation("Distribution Centre DR warehouse");
-  } else if (selectedOption === "PRE") {
+  } else if (selectedOption === "PRE" && poLocation === "Distribution Centre DR warehouse") {
       setPOLocation("Distribution Centre B&M");
   }
   };
