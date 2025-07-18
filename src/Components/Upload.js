@@ -154,10 +154,16 @@ function Upload() {
       return;
     }
 
-    const proxyUrl = 'https://bhk9mub853.execute-api.eu-north-1.amazonaws.com/beta-proxy';
+    const proxyUrl = 'https://p8dzzvc71j.execute-api.eu-west-1.amazonaws.com/default/opil-converter-tool-to-pim';
+
+    const environment = 'tst';
+
     try {
       const response = await axios.post(proxyUrl, convertedBlob, {
-        headers: { 'Content-Type': 'application/octet-stream' },
+        headers: {
+          'Content-Type': 'application/octet-stream',
+          'X-Environment': environment
+        },
       });
 
       if (response.status === 200) {
@@ -179,12 +185,12 @@ function Upload() {
     setSelectedSupplier(selectedOption);
     setSelectedBrand(null); // Reset brand selection when supplier changes
     if (selectedOption && (selectedOption.label === "J.LINDEBERG_AB" || selectedOption.value === "J.LINDEBERG_AB")) {
-    setLifestage("Adult");
-    setGender("Men");
-  } else {
-    setLifestage("");
-    setGender("");
-  }
+      setLifestage("Adult");
+      setGender("Men");
+    } else {
+      setLifestage("");
+      setGender("");
+    }
   };
 
   const handleBrandChange = (selectedOption) => {
@@ -195,20 +201,20 @@ function Upload() {
     setPOLocation(selectedOption);
     if (selectedOption === "Distribution Centre DR warehouse") {
       setPOType("CD");
-  } else if (["Distribution Centre B&M", "Helsinki Department Store", "Itis Department Store", "Jumbo Department Store", "Riga Department Store", "Tallinn Department Store", "Tampere Department Store", "Tapiola Department Store", "Turku Department Store"].includes(selectedOption)) {
+    } else if (["Distribution Centre B&M", "Helsinki Department Store", "Itis Department Store", "Jumbo Department Store", "Riga Department Store", "Tallinn Department Store", "Tampere Department Store", "Tapiola Department Store", "Turku Department Store"].includes(selectedOption)) {
       setPOType("PRE");
-  }
+    }
   };
 
   const handlePOTypeChange = (selectedOption) => {
     setPOType(selectedOption);
     if (selectedOption === "CD" && poLocation === "Distribution Centre B&M") {
       setPOLocation("Distribution Centre DR warehouse");
-  } else if (selectedOption === "PRE" && poLocation === "Distribution Centre DR warehouse") {
+    } else if (selectedOption === "PRE" && poLocation === "Distribution Centre DR warehouse") {
       setPOLocation("Distribution Centre B&M");
-  }
+    }
   };
-  
+
   return (
     <Container className="bg-image">
       {/* Success Toast */}
@@ -268,9 +274,9 @@ function Upload() {
                 <Form.Group className="mb-3">
                   <Form.Label>Assortment Lead <span style={{ color: "red" }}>*</span></Form.Label>
                   <Form.Select aria-label="Select Assortment Lead" onChange={(e) => setBuyer(e.target.value)} value={buyer} required>
-                  <option value="" disabled>Select Assortment Lead...</option>
+                    <option value="" disabled>Select Assortment Lead...</option>
                     {buyers.map((b, index) => (
-                  <option key={index} value={b}>{b}</option>         
+                      <option key={index} value={b}>{b}</option>
                     ))}
                   </Form.Select>
                 </Form.Group>
@@ -303,9 +309,9 @@ function Upload() {
                 <Form.Group className="mb-3">
                   <Form.Label>Consumer Lifestage <span style={{ color: "red" }}>*</span></Form.Label>
                   <Form.Select aria-label="Select Lifestage" onChange={(e) => setLifestage(e.target.value)} value={lifestage} required>
-                  <option value="" disabled>Select Consumer Lifestage...</option>
+                    <option value="" disabled>Select Consumer Lifestage...</option>
                     {lifestages.map((ls, index) => (
-                  <option key={index} value={ls}>{ls}</option>
+                      <option key={index} value={ls}>{ls}</option>
                     ))}
                   </Form.Select>
                 </Form.Group>
@@ -321,9 +327,9 @@ function Upload() {
                 <Form.Group className="mb-3">
                   <Form.Label>ST User <span style={{ color: "red" }}>*</span></Form.Label>
                   <Form.Select aria-label="Select ST User" onChange={(e) => setSTUser(e.target.value)} value={ST_user} required>
-                  <option value="" disabled>Select ST User...</option>
+                    <option value="" disabled>Select ST User...</option>
                     {ST_users.map((user, index) => (
-                  <option key={index} value={user}>{user}</option>
+                      <option key={index} value={user}>{user}</option>
                     ))}
                   </Form.Select>
                 </Form.Group>
