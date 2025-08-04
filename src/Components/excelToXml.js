@@ -156,7 +156,12 @@ function convert(
     //console.log("Processed Didriksons data (header=orig row7, dropped row8):", data);
 }else if (supplierName === "GIORGIO_ARMANI_S.P.A.") {
     data = XLSX.utils.sheet_to_json(workbook.Sheets["Sheet1"], { header: 1 });
-}else {
+}else if (supplierName === "VF_SCANDINAVIA_A/S") {
+      const sheet = workbook.Sheets[sheetName];
+      const fullRange = XLSX.utils.decode_range(sheet['!ref']);
+      fullRange.s.r = 1;
+      data = XLSX.utils.sheet_to_json(sheet, { header: 1, range: fullRange});
+    }else {
     data = XLSX.utils.sheet_to_json(workbook.Sheets[sheetName], { header: 1 });
   }
   
