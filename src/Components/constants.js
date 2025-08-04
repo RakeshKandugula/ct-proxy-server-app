@@ -15,7 +15,7 @@ export const multiplicationFactorOptions = [
 export { getSupplierOptions as suppliers } from './supplierData';
 
 export const brands = {
-  "VF_SCANDINAVIA_A/S": [
+  "VF_SCANDINAVIA_A/S_HE": [
     { value: "Timberland", label: "Timberland" },
     { value: "Eastpak", label: "Eastpak" }
   ],
