@@ -234,7 +234,7 @@ export const suppliers = [
   "LUVBY_OY",
   "Luxottica_Poland_sp._z_o.o.",
   "LUXKIDS_APS",
-  "MA_FASHION_HOLDING_OÜ",
+  
   "MAC_MODE_GMBH_&_CO._KGAA",
   "MAIDENFORM_BRANDS_INTERNATIONAL_LTD.",
   "MAINIO_CLOTHING_OY",
@@ -481,8 +481,8 @@ export const specialSuppliers = [
   { value: "ECCO_KENKA_OY", label: "ECCO_KENKÄ_OY" },
   { value: "DKH_RETAIL_LTD_(BO_GRANT_THORNTON_EFFIC)",  label: "DKH_RETAIL_LTD_(BO_GRANT_THORNTON_EFFICIENTIA)" },
   { value: "Samsoe_&_Samsoe_Whole_Sale_ApS", label: "Samsøe_&_Samsøe_Whole_Sale_ApS" },
-  { value: "BJORN_BORG_FINLAND_OY", label: "BJÖRN_BORG_FINLAND_OY" }
-
+  { value: "BJORN_BORG_FINLAND_OY", label: "BJÖRN_BORG_FINLAND_OY" },
+  {value:"MA_FASHION_HOLDING_OU" , label:"MA_FASHION_HOLDING_OÜ"}
 ];
 
 
