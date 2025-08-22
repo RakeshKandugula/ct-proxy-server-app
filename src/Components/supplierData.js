@@ -482,7 +482,10 @@ export const specialSuppliers = [
   { value: "DKH_RETAIL_LTD_(BO_GRANT_THORNTON_EFFIC)",  label: "DKH_RETAIL_LTD_(BO_GRANT_THORNTON_EFFICIENTIA)" },
   { value: "Samsoe_&_Samsoe_Whole_Sale_ApS", label: "Samsøe_&_Samsøe_Whole_Sale_ApS" },
   { value: "BJORN_BORG_FINLAND_OY", label: "BJÖRN_BORG_FINLAND_OY" },
-  { value: "MA_FASHION_HOLDING_OU", label:"MA_FASHION_HOLDING_OÜ" }
+  { value: "MA_FASHION_HOLDING_OU", label:"MA_FASHION_HOLDING_OÜ" },
+  {value: "MA_FASHION_HOLDING_OU_TALLINN_311", label: "MA_FASHION_HOLDING_OÜ_TALLINN_311"},
+  {value: "MA_FASHION_HOLDING_OU_TALLINN_300", label: "MA_FASHION_HOLDING_OÜ_TALLINN_300"},
+  {value: "MA_FASHION_HOLDING_OU_TALLINN_010", label: "MA_FASHION_HOLDING_OÜ_TALLINN_010"}
 ];
 
 
