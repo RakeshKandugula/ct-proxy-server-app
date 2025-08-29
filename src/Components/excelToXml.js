@@ -33,7 +33,7 @@ function findHeaderRow(sheet) {
   const data = XLSX.utils.sheet_to_json(sheet, { header: 1 });  
   const range = XLSX.utils.decode_range(sheet['!ref']);  
   // Loop through the first 10 rows (or total available rows, whichever is smaller)
-  for (let r = 0; r < Math.min(data.length, 10); r++) {
+  for (let r = 0; r < Math.min(data.length, 15); r++) {
     const rowData = data[r] || []; // Make sure we have an array, even if the row is empty
     const nonEmptyCells = rowData.filter(cell => String(cell).trim() !== "");
     console.log("Row " + (range.s.r + r) + ": ", nonEmptyCells+"-->"+nonEmptyCells.length);
