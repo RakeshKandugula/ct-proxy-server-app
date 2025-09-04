@@ -1,7 +1,6 @@
 // This file contains all supplier data
 export const suppliers = [
   // Base suppliers where value and label are the same
-  "A.KJÆRBEDE_ApS",
   "A.P.C._SAS",
   "AARIKKA_OY",
   "ACC3SS_OY",
@@ -485,7 +484,8 @@ export const specialSuppliers = [
   { value: "MA_FASHION_HOLDING_OU", label:"MA_FASHION_HOLDING_OÜ" },
   {value: "MA_FASHION_HOLDING_OU_TALLINN_311", label: "MA_FASHION_HOLDING_OÜ_TALLINN_311"},
   {value: "MA_FASHION_HOLDING_OU_TALLINN_300", label: "MA_FASHION_HOLDING_OÜ_TALLINN_300"},
-  {value: "MA_FASHION_HOLDING_OU_TALLINN_010", label: "MA_FASHION_HOLDING_OÜ_TALLINN_010"}
+  {value: "MA_FASHION_HOLDING_OU_TALLINN_010", label: "MA_FASHION_HOLDING_OÜ_TALLINN_010"},
+  {value: "A.KJAERBEDE_ApS", label: "A.KJÆRBEDE_ApS"}
 ];
 
 
