@@ -353,7 +353,6 @@ export const suppliers = [
   "ROGUE_AGENCY_OY",
   "ROMANIN",
   "ROSEMUNDE_APS",
-  "RÖHNISCH_SPORTSWEAR_AB",
   "S_GROUP_APS",
   "S.OLIVER_SALES_GMBH_&_CO._KG",
   "SADDLER_SCANDINAVIA_AB",
@@ -485,7 +484,8 @@ export const specialSuppliers = [
   {value: "MA_FASHION_HOLDING_OU_TALLINN_311", label: "MA_FASHION_HOLDING_OÜ_TALLINN_311"},
   {value: "MA_FASHION_HOLDING_OU_TALLINN_300", label: "MA_FASHION_HOLDING_OÜ_TALLINN_300"},
   {value: "MA_FASHION_HOLDING_OU_TALLINN_010", label: "MA_FASHION_HOLDING_OÜ_TALLINN_010"},
-  {value: "A.KJAERBEDE_ApS", label: "A.KJÆRBEDE_ApS"}
+  {value: "A.KJAERBEDE_ApS", label: "A.KJÆRBEDE_ApS"},
+  {value: "ROHNISCH_SPORTSWEAR_AB", label: "RÖHNISCH_SPORTSWEAR_AB"},
 ];
 
 
