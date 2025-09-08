@@ -47,6 +47,10 @@ export const brands = {
   "GIORGIO_ARMANI_S.P.A.": [
     { value: "ARMANI EXCHANGE", label: "ARMANI EXCHANGE" },
     { value: "Emporio Armani", label: "EMPORIO ARMANI" }
+  ],
+  "RODEL_S.P.A.":[
+     { value: "Cinzia Rocca", label: "Cinzia Rocca" },
+    { value: "Cinzia Rocca Icons", label: "Cinzia Rocca Icons" }
   ]
 };
 
