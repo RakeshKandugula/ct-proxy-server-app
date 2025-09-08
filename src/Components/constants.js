@@ -51,6 +51,11 @@ export const brands = {
   "RODEL_S.P.A.":[
      { value: "Cinzia Rocca", label: "Cinzia Rocca" },
     { value: "Cinzia Rocca Icons", label: "Cinzia Rocca Icons" }
+  ],
+  "HADDAD_BRANDS_EUROPE":[
+    { value: "Levi's", label: "Levi's" },
+    { value: "Levi's Kids", label: "Levi's Kids" },
+    { value: "Polo Ralph Lauren", label: "Polo Ralph Lauren" }
   ]
 };
 
