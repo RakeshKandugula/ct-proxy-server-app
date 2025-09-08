@@ -204,8 +204,15 @@ function convert(
       fullRange.s.r=findHeaderRow(sheet);
       //console.log(fullRange.s+"--"+supplierName);
      data = XLSX.utils.sheet_to_json(sheet, { header: 1, range: fullRange });
-    }
+    }else if(supplierName==="ROHNISCH_SPORTSWEAR_AB"){
+      const sheet = workbook.Sheets[sheetName];
+      const fullRange = XLSX.utils.decode_range(sheet['!ref']);
+      fullRange.s.r=findHeaderRow(sheet);
+      //console.log(fullRange.s+"--"+supplierName);
+     data = XLSX.utils.sheet_to_json(sheet, { header: 1, range: fullRange });
+  }
   else {
+    
     data = XLSX.utils.sheet_to_json(workbook.Sheets[sheetName], { header: 1 });
   }
   
