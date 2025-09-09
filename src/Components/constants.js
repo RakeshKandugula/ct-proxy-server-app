@@ -56,6 +56,10 @@ export const brands = {
     { value: "Levi's", label: "Levi's" },
     { value: "Levi's Kids", label: "Levi's Kids" },
     { value: "Polo Ralph Lauren", label: "Polo Ralph Lauren" }
+  ],
+    "GERISALE_AB":[
+    { value: "Saucony", label: "Saucony" },
+    { value: "Saucony Originals", label: "Saucony Originals" }
   ]
 };
 
