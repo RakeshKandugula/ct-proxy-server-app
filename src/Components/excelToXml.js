@@ -9,7 +9,7 @@ function sanitizeKey(key) {
   if (typeof key === 'string') {
     return key.replace(/[\r\n]+/g, ' ').trim();
   }
-  return '';
+  return 'Untitled1';
 }
 
 
