@@ -16,15 +16,22 @@ function sanitizeKey(key) {
 function getUniqueHeaders(headers) {
   var headerCounts = {};
   var result = [];
+  var untitledCount = 0;
   for (var i = 0; i < headers.length; i++) {
     var sanitized = sanitizeKey(headers[i]);
-    if (!headerCounts.hasOwnProperty(sanitized) && sanitized) {
+     if (sanitized === 'Untitled') {
+      untitledCount++;
+      var newHeader = `Untitled ${untitledCount}`; 
+      result.push(newHeader);
+    }else{
+    if (!headerCounts.hasOwnProperty(sanitized)) {
       headerCounts[sanitized] = 1;
       result.push(sanitized);
     } else {
       headerCounts[sanitized]++;
       result.push(sanitized + headerCounts[sanitized]);
     }
+   }
   }
   return result;
 }
