@@ -58,6 +58,7 @@ function convert(
   file,
   arrayBuffer,
   supplier,
+  department,
   brand,
   buyer,
   season,
