@@ -449,14 +449,14 @@ export const supplierDepartmentMapping = {
 
   // Handle special suppliers that have different values than labels
   const specialSupplierMap = {
-  "FALKE_KGAA_SCHMALLENBERG" : "FALKE_KGAA", 
-  "ECCO_KENKA_OY" : "ECCO_KENKÄ_OY" ,
+   "FALKE_KGAA_SCHMALLENBERG"        : "FALKE_KGAA", 
+   "ECCO_KENKA_OY"                   : "ECCO_KENKÄ_OY" ,
    "DKH_RETAIL_LTD_(BO_GRANT_THORNTON_EFFIC)"  : "DKH_RETAIL_LTD_(BO_GRANT_THORNTON_EFFICIENTIA)",
    "Samsoe_&_Samsoe_Whole_Sale_ApS" : "Samsøe_&_Samsøe_Whole_Sale_ApS",
-   "NEW_BALANCE_DENMARK_APS,_S_S": "NEW_BALANCE_DENMARK_APS,_SUOMEN_SIVULIIKE",
-   "MA_FASHION_HOLDING_OU_TALLINN_311": "MA_FASHION_HOLDING_OÜ_TALLINN_311",
-   "MA_FASHION_HOLDING_OU_TALLINN_300": "MA_FASHION_HOLDING_OÜ_TALLINN_300",
-   "MA_FASHION_HOLDING_OU_TALLINN_010": "MA_FASHION_HOLDING_OÜ_TALLINN_010"
+   "NEW_BALANCE_DENMARK_APS,_S_S"   : "NEW_BALANCE_DENMARK_APS,_SUOMEN_SIVULIIKE",
+   "BJORN_BORG_FINLAND_OY"          : "BJÖRN_BORG_FINLAND_OY",
+   "MA_FASHION_HOLDING_OU"          :"MA_FASHION_HOLDING_OÜ",
+   "A.KJAERBEDE_ApS"                : "A.KJÆRBEDE_ApS"
   };
   
 export function getDepartmentOptions() {
