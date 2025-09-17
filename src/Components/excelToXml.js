@@ -292,7 +292,9 @@ function convert(
   Product2.ele('Value', { AttributeID: "att_tool_sendedi" }).txt(poEDI);
   Product2.ele('Value', { AttributeID: "att_tool_nbd" }).txt(nb);
   Product2.ele('Value', { AttributeID: "att_tool_nad" }).txt(na);
-  Product2.ele('Value', { AttributeID: "att_tool_multifactor" }).txt(mf != null ? mf : "");  Product2.ele('Value', { AttributeID: "att_tool_supplier" }).txt(supplier.value);
+  Product2.ele('Value', { AttributeID: "att_tool_multifactor" }).txt(mf != null ? mf : "");  
+  Product2.ele('Value', { AttributeID: "att_tool_supplier" }).txt(supplier.value);
+  Product2.ele('Value', { AttributeID: "att_tool_departmentlocation" }).txt(department!=null?department.value:"");
   const ticketTypeValue = ticketType ? ticketType : "";
   Product2.ele('Value', { AttributeID: "att_tool_tickettype" }).txt(ticketTypeValue);
   Product2.ele('Value', { AttributeID: "att_tool_brand" }).txt(brand ? brand.value : "");
