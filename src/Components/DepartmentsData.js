@@ -1,6 +1,6 @@
 // This file contains all department data and supplier-to-department mappings
 export const departments = [
-  { value: "MULTIPLE_DEPARTMENTS", label: "MULTIPLE DEPARTMENTS" },
+  { value: "MULTIPLE_DEPARTMENTS", label: "Multiple Departments" },
   { value: "DEPT_322", label: "322 - A + more" },
   { value: "DEPT_238", label: "238 - A+more Loungewear" },
   { value: "DEPT_400", label: "400 - Bogi" },
