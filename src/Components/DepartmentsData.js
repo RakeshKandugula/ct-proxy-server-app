@@ -666,7 +666,7 @@ export function getDepartmentsForSupplier(supplierValue) {
   const departmentIds = supplierDepartmentMapping[mappingKey] || [];
 
   return departmentIds.map(deptId => {
-    const dept = departments.find(d => d.value == deptId);
+    const dept = departments.find(d => d.value === deptId);
     return dept || { value: deptId, label: `Unknown Department (${deptId})` };
   }).sort((a, b) =>{
       if (a.value === "MULTIPLE_DEPARTMENTS") return -1;
