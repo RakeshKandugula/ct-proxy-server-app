@@ -664,13 +664,20 @@ export function getDepartmentsForSupplier(supplierValue) {
   const mappingKey = specialSupplierMap[supplierValue] || supplierValue;
   const departmentIds = supplierDepartmentMapping[mappingKey] || [];
 
-  return departmentIds.map(deptId => {
-    const dept = departments.find(d => d.value === deptId);
+   const items = departmentIds.map(deptId => {
+    const dept = departments.find(d => d.value == deptId);
     return dept || { value: deptId, label: `Unknown Department (${deptId})` };
-  }).sort((a, b) =>{
-      if (a.value === "MULTIPLE_DEPARTMENTS") return -1;
-      if (b.value === "MULTIPLE_DEPARTMENTS") return 1;
-     a.label.localeCompare(b.label)});
+  })
+
+    items.sort((a, b) => {
+    if (a.value === "MULTIPLE_DEPARTMENTS") return -1;
+    if (b.value === "MULTIPLE_DEPARTMENTS") return 1;
+    const la = (a.label ?? a.value ?? "").toString();
+    const lb = (b.label ?? b.value ?? "").toString();
+    return la.localeCompare(lb);
+  });
+
+  return items;
 }
 
 export function getMultipleValueForSupplier(supplierValue) {
@@ -685,6 +692,3 @@ export function getMultipleValueForSupplier(supplierValue) {
 
   return [];
 }
-
-
-
