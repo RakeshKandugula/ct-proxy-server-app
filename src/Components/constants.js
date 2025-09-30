@@ -1,4 +1,5 @@
 export const multiplicationFactorOptions = [
+  { value: 2.35, label: 2.35 },
   { value: 2.5, label: 2.5 },
   { value: 2.6, label: 2.6 },
   { value: 2.7, label: 2.7 },

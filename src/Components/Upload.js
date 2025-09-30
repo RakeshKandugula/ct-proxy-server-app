@@ -479,6 +479,7 @@ function Upload() {
                     onChange={(option) => setMultiplicationFactor(option ? option.value : null)}
                     placeholder="Select..."
                     isSearchable={true}
+                    isClearable={true}
                   />
                 </Form.Group>
                 <Form.Group className="mb-3">
