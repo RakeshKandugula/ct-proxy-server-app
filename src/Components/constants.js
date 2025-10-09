@@ -66,6 +66,10 @@ export const brands = {
    "DEDIMAX_S.R.L.": [
     { value: "EMM", label: "Emme Marella / Marella" },
     { value: "Pennyblack", label: "Pennyblack" }
+  ],
+  "BRANDS_OF_SCANDINAVIA_A/S" : [
+      { value: "Freequent", label: "Freequent"},
+      { value: "Cph Muse", label: "Cph Muse" }  
   ]
 };
 
