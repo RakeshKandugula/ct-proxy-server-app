@@ -233,7 +233,7 @@ export const suppliers = [
   "LUVBY_OY",
   "Luxottica_Poland_sp._z_o.o.",
   "LUXKIDS_APS",
-  
+  "LE_GRAMME_INTERNATIONAL_SAS",
   "MAC_MODE_GMBH_&_CO._KGAA",
   "MAIDENFORM_BRANDS_INTERNATIONAL_LTD.",
   "MAINIO_CLOTHING_OY",
