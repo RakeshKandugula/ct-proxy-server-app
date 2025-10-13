@@ -70,6 +70,10 @@ export const brands = {
   "BRANDS_OF_SCANDINAVIA_A/S" : [
       { value: "Freequent", label: "Freequent"},
       { value: "Cph Muse", label: "Cph Muse" }  
+  ],
+   "S_GROUP_APS": [
+    { value: "Paul Smith", label: "Paul Smith" },
+    { value: "PS Paul Smith", label: "PS Paul Smith" }
   ]
 };
 
