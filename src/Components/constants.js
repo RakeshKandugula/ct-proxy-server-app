@@ -25,6 +25,10 @@ export const brands = {
     { value: "(RTW)", label: "ADIDAS_SUOMI_OY(RTW)" },
     { value: "(Sports)", label: "ADIDAS_SUOMI_OY(Sports)" }
   ],
+  NEW_BALANCE_DENMARK_APS: [
+    { value: "Apparel", label: "Apparel" },
+    { value: "Footwear", label: "Footwear" }
+  ],
   DK_COMPANY_FINLAND_OY: [
     { value: "Gestuz", label: "Gestuz" },
     { value: "Part Two", label: "Part Two" },
