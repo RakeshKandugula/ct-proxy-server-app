@@ -53,6 +53,73 @@ function findHeaderRow(sheet) {
   return range.s.r;
 }
 
+function countNonEmpty(row) {
+  let count = 0;
+  const maxCols = Math.min(5, row.length);
+  
+  for (let k = 0; k < maxCols; k++) {
+    const cell = row[k];
+    // Check if cell has actual data (not empty, null, or undefined)
+    if (cell !== undefined && cell !== null && String(cell).trim() !== "") {
+      count++;
+    }
+  }
+  
+  return count;
+}
+
+
+function combineMultiRowData(data, arrList) {
+  const result = [];
+  let currentIndex = 0;
+  if (!data || data.length === 0) return [];
+
+  while (currentIndex < data.length) {
+    const mainRow = [...data[currentIndex]];
+    
+    const mainRowKeyFields = countNonEmpty(mainRow);
+    
+    let checkIndex = currentIndex + 1;
+    
+    while (checkIndex < data.length) {
+      const possibleContinuationRow = data[checkIndex];
+      const continuationKeyFields = countNonEmpty(possibleContinuationRow);
+      
+      // The main row must have 2 or more key fields
+      const isThisAContinuationRow = (continuationKeyFields < 2) && (mainRowKeyFields >= 2);
+      
+      if (isThisAContinuationRow) {
+        for (let columnIndex = 0; columnIndex < arrList.length; columnIndex++) {
+          const valueFromContinuationRow = possibleContinuationRow[columnIndex];
+          
+          const cellHasData = valueFromContinuationRow !== undefined && 
+                              valueFromContinuationRow !== null && 
+                              String(valueFromContinuationRow).trim() !== "";
+          
+          if (cellHasData) {
+            const existingValue = mainRow[columnIndex] || "";
+            
+            if (existingValue) {
+              mainRow[columnIndex] = `${existingValue} ${valueFromContinuationRow}`;
+            } else {
+              mainRow[columnIndex] = valueFromContinuationRow;
+            }
+          }
+        }
+        
+        checkIndex++;
+      } else {
+        break;
+      }
+    }
+    
+    result.push(mainRow);    
+    currentIndex = checkIndex;
+  }
+
+  return result;
+}
+
 
 function convert(
   file,
@@ -232,6 +299,16 @@ function convert(
       fullRange.s.r=findHeaderRow(sheet);
       console.log(fullRange.s+"--"+supplierName);
      data = XLSX.utils.sheet_to_json(sheet, { header: 1, range: fullRange });
+  }
+  else if (supplierName === "EMU_AUSTRALIA_(EUROPE)_LTD_(NL)") {
+    const sheet = workbook.Sheets[sheetName];
+    const fullRange = XLSX.utils.decode_range(sheet['!ref']);
+    fullRange.s.r = findHeaderRow(sheet);
+    data = XLSX.utils.sheet_to_json(sheet, { header: 1, range: fullRange });
+    const tempHeaders = data[0] ? getUniqueHeaders(data[0]) : [];
+    // Apply multi-row combining immediately after reading
+    data = [data[0], ...combineMultiRowData(data.slice(1), tempHeaders)];
+    console.log('Combined multi-row data for EMU:', data);
   }
   else {
     data = XLSX.utils.sheet_to_json(workbook.Sheets[sheetName], { header: 1 });
