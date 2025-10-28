@@ -251,12 +251,7 @@ function convert(
       const fullRange = XLSX.utils.decode_range(sheet['!ref']);
       fullRange.s.r=findHeaderRow(sheet);
      data = XLSX.utils.sheet_to_json(sheet, { header: 1, range: fullRange });
-  }else if(supplierName==="EMU_AUSTRALIA_(EUROPE)_LTD_(NL)"){
-      const sheet = workbook.Sheets[sheetName];
-      const fullRange = XLSX.utils.decode_range(sheet['!ref']);
-      fullRange.s.r=findHeaderRow(sheet);
-     data = XLSX.utils.sheet_to_json(sheet, { header: 1, range: fullRange });
-    }else if(supplierName==="WORK_IN_PROGRESS_GMBH"){
+  }else if(supplierName==="WORK_IN_PROGRESS_GMBH"){
       const sheet = workbook.Sheets[sheetName];
       const fullRange = XLSX.utils.decode_range(sheet['!ref']);
       fullRange.s.r=findHeaderRow(sheet);
