@@ -73,7 +73,6 @@ function combineMultiRowData(data, arrList) {
   const result = [];
   let currentIndex = 0;
   if (!data || data.length === 0) return [];
-
   while (currentIndex < data.length) {
     const mainRow = [...data[currentIndex]];
     
@@ -111,15 +110,12 @@ function combineMultiRowData(data, arrList) {
       } else {
         break;
       }
-    }
-    
+    } 
     result.push(mainRow);    
     currentIndex = checkIndex;
   }
-
   return result;
 }
-
 
 function convert(
   file,
