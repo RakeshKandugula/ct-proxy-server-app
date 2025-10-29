@@ -75,7 +75,7 @@ function combineMultiRowData(data, arrList) {
   if (!data || data.length === 0) return [];
   while (currentIndex < data.length) {
     const mainRow = [...data[currentIndex]];
-    
+    const MERGE_COLUMNS = ["Feature & Benefits List"];
     const mainRowKeyFields = countNonEmpty(mainRow);
     
     let checkIndex = currentIndex + 1;
@@ -90,12 +90,12 @@ function combineMultiRowData(data, arrList) {
       if (isThisAContinuationRow) {
         for (let columnIndex = 0; columnIndex < arrList.length; columnIndex++) {
           const valueFromContinuationRow = possibleContinuationRow[columnIndex];
-          
+          const header = arrList[columnIndex];
           const cellHasData = valueFromContinuationRow !== undefined && 
                               valueFromContinuationRow !== null && 
                               String(valueFromContinuationRow).trim() !== "";
           
-          if (cellHasData) {
+          if (cellHasData && MERGE_COLUMNS.includes(header)) {
             const existingValue = mainRow[columnIndex] || "";
             
             if (existingValue) {
