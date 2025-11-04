@@ -484,6 +484,7 @@ export const specialSuppliers = [
   { value: "MA_FASHION_HOLDING_OU", label:"MA_FASHION_HOLDING_OÜ" },
   {value: "A.KJAERBEDE_ApS", label: "A.KJÆRBEDE_ApS"},
   {value: "ROHNISCH_SPORTSWEAR_AB", label: "RÖHNISCH_SPORTSWEAR_AB"},
+  {value: "IDA_SJOSTEDT_COUTURE_AB", label: "IDA_SJÖSTEDT_COUTURE_AB"}
 ];
 
 
