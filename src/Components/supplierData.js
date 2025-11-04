@@ -168,7 +168,7 @@ export const suppliers = [
   "HOMEKIT_OY_AB",
   "HOUSE_OF_HALLA_OY",
   "HUMAN_SCALES_AB",
-  "IDA_SJÖSTEDT_COUTURE_AB",
+  
   "IM_PRODUCTION_SAS",
   "IMAC_S.P.A.",
   "INCREDIBLE_FASHIONS_LIMITED",
