@@ -25,6 +25,10 @@ export const brands = {
     { value: "(RTW)", label: "ADIDAS_SUOMI_OY(RTW)" },
     { value: "(Sports)", label: "ADIDAS_SUOMI_OY(Sports)" }
   ],
+  ACC3SS_OY: [
+    { value: "All Saints", label: "All Saints" },
+    { value: "Ted Baker", label: "Ted Bakery" }
+  ],
   NEW_BALANCE_DENMARK_APS: [
     { value: "Apparel", label: "Apparel" },
     { value: "Footwear", label: "Footwear" }
