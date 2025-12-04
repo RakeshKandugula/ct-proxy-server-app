@@ -20,6 +20,7 @@ function Upload() {
   const [lifestage, setLifestage] = useState("");
   const [gender, setGender] = useState("");
   const [ST_user, setSTUser] = useState("");
+  const [vatPriceChange, setVatPriceChange] = useState("");
   const [selectedTicketType, setSelectedTicketType] = useState("");
   const [poLocation, setPOLocation] = useState("Distribution Centre B&M");
   const [poType, setPOType] = useState("PRE");
@@ -48,6 +49,7 @@ function Upload() {
     setLifestage("");
     setGender("");
     setSTUser("");
+    setVatPriceChange("");
     setSelectedTicketType("");
     setPOLocation("Distribution Centre B&M");
     setPOType("PRE");
@@ -104,7 +106,8 @@ function Upload() {
           notBefore,
           notAfter,
           multiplicationFactor,
-          dealInfo
+          dealInfo,
+          vatPriceChange
         );
 
         // Check if conversion was successful
@@ -409,6 +412,14 @@ function Upload() {
                     {ST_users.map((user, index) => (
                       <option key={index} value={user}>{user}</option>
                     ))}
+                  </Form.Select>
+                </Form.Group>
+                <Form.Group className="mb-3">
+                  <Form.Label>VAT Price Change?</Form.Label>
+                  <Form.Select aria-label="Select VAT Price Change" onChange={(e) => setVatPriceChange(e.target.value)} value={vatPriceChange}>
+                    <option value="">Select...</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
                   </Form.Select>
                 </Form.Group>
                 <Form.Group className="mb-3">
